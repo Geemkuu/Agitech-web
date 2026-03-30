@@ -21,9 +21,9 @@ interface SeedlingCardProps {
 
 export function SeedlingCard({ seedling }: SeedlingCardProps) {
   const stockColor = {
-    "In Stock": "bg-primary/10 text-primary border-primary/20",
-    "Low Stock": "bg-accent/10 text-accent border-accent/20",
-    "Out of Stock": "bg-destructive/10 text-destructive border-destructive/20",
+    "In Stock": "bg-white text-primary border-primary/20",
+    "Low Stock": "bg-white text-accent border-accent/20",
+    "Out of Stock": "bg-white text-destructive border-destructive/20",
   }
 
   const whatsappMessage = `Hello! I'm interested in ordering ${seedling.name} seedlings (KES ${seedling.price} each). Please let me know about availability.`

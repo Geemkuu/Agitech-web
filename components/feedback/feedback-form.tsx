@@ -72,7 +72,7 @@ export function FeedbackForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FieldGroup>
-        <Field invalid={!!errors.name}>
+        <Field invalid={errors.name ? true : undefined}>
           <FieldLabel htmlFor="name">Full Name</FieldLabel>
           <Input
             id="name"
@@ -82,7 +82,7 @@ export function FeedbackForm() {
           {errors.name && <FieldError>{errors.name.message}</FieldError>}
         </Field>
 
-        <Field invalid={!!errors.phone_number}>
+        <Field invalid={errors.phone_number ? true : undefined}>
           <FieldLabel htmlFor="phone_number">Phone Number</FieldLabel>
           <Input
             id="phone_number"
@@ -96,7 +96,7 @@ export function FeedbackForm() {
           {errors.phone_number && <FieldError>{errors.phone_number.message}</FieldError>}
         </Field>
 
-        <Field invalid={!!errors.message}>
+        <Field invalid={errors.message ? true : undefined}>
           <FieldLabel htmlFor="message">Your Message</FieldLabel>
           <Textarea
             id="message"

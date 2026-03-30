@@ -1,5 +1,4 @@
-This is a professional, "investor-ready" README designed specifically for **Agitech**. It highlights your work with **Supabase**, **Next.js**, and the **WhatsApp integration**, making it perfect for your portfolio or for showing the Agitech team.
-
+This was developed by Geemkuu...the owner of this repo and account 
 ### 🛠️ How to use:
 1.  In VS Code, create a file named `README.md` in your main folder.
 2.  Delete everything inside and paste the code below.

@@ -56,7 +56,7 @@ export async function CatalogueContent({ category, search }: CatalogueContentPro
         {category && ` in ${category}`}
         {search && ` matching "${search}"`}
       </p>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {seedlings.map((seedling) => (
           <SeedlingCard key={seedling.id} seedling={seedling} />
         ))}

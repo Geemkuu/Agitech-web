@@ -37,7 +37,7 @@ export async function FeaturedSeedlings() {
           </Button>
         </div>
 
-        <div className="grid gap-4 grid-cols-2 [&:has(.group\/card:hover)>.group\/card:not(:hover)]:opacity-95">
+        <div className="grid gap-4 grid-cols-2 [&:has(.group\/card:hover)>.group\/card:not(:hover)]:opacity-95 [&:has([data-in-view=true])>[data-in-view=false]]:opacity-95">
           {seedlings.map((seedling) => (
             <SeedlingCard key={seedling.id} seedling={seedling} />
           ))}

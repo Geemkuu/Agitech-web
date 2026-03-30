@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -20,6 +21,67 @@ interface SeedlingCardProps {
 }
 
 export function SeedlingCard({ seedling }: SeedlingCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [isInView, setIsInView] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    // Check if mobile (no hover capability)
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(hover: none)").matches)
+    }
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (!isMobile || !cardRef.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Card is in the center 40% of the viewport
+          const rect = entry.boundingClientRect
+          const viewportHeight = window.innerHeight
+          const cardCenter = rect.top + rect.height / 2
+          const viewportCenter = viewportHeight / 2
+          const threshold = viewportHeight * 0.25
+
+          const isNearCenter = Math.abs(cardCenter - viewportCenter) < threshold
+          setIsInView(entry.isIntersecting && isNearCenter)
+        })
+      },
+      {
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+        rootMargin: "-20% 0px -20% 0px",
+      }
+    )
+
+    observer.observe(cardRef.current)
+    return () => observer.disconnect()
+  }, [isMobile])
+
+  // Also track scroll for more precise center detection on mobile
+  useEffect(() => {
+    if (!isMobile || !cardRef.current) return
+
+    const handleScroll = () => {
+      if (!cardRef.current) return
+      const rect = cardRef.current.getBoundingClientRect()
+      const viewportHeight = window.innerHeight
+      const cardCenter = rect.top + rect.height / 2
+      const viewportCenter = viewportHeight / 2
+      const threshold = viewportHeight * 0.2
+
+      setIsInView(Math.abs(cardCenter - viewportCenter) < threshold)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll() // Initial check
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [isMobile])
+
   const stockColor = {
     "In Stock": "bg-white text-primary border-primary/20",
     "Low Stock": "bg-white text-accent border-accent/20",
@@ -29,14 +91,20 @@ export function SeedlingCard({ seedling }: SeedlingCardProps) {
   const whatsappMessage = `Hello! I'm interested in ordering ${seedling.name} seedlings (KES ${seedling.price} each). Please let me know about availability.`
 
   return (
-    <Card className="group/card relative flex h-full flex-col overflow-hidden transition-all duration-300 hover:z-50 hover:-translate-y-2 hover:shadow-xl [&:hover~*]:opacity-95 peer">
+    <Card 
+      ref={cardRef}
+      data-in-view={isInView}
+      className={`group/card relative flex h-full flex-col overflow-hidden transition-all duration-300 
+        hover:z-50 hover:-translate-y-2 hover:shadow-xl
+        data-[in-view=true]:z-50 data-[in-view=true]:-translate-y-2 data-[in-view=true]:shadow-xl`}
+    >
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
         {seedling.image_url ? (
           <Image
             src={seedling.image_url}
             alt={seedling.name}
             fill
-            className="object-cover transition-transform group-hover/card:scale-105"
+            className="object-cover transition-transform group-hover/card:scale-105 group-data-[in-view=true]/card:scale-105"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
           />
         ) : (

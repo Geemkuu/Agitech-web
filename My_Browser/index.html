@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Browser</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f3f3;
+            overflow: hidden;
+        }
+
+        .title-bar {
+            height: 32px;
+            background-color: #2d2d30;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            -webkit-app-region: drag;
+        }
+
+        .title-bar .controls {
+            display: flex;
+            -webkit-app-region: no-drag;
+        }
+
+        .title-bar button {
+            background: none;
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .title-bar button:hover {
+            background-color: #3e3e42;
+        }
+
+        .tab-bar {
+            height: 40px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .tab {
+            background-color: #f9f9f9;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px 4px 0 0;
+            padding: 8px 12px;
+            margin-right: 2px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            min-width: 200px;
+        }
+
+        .tab.active {
+            background-color: #ffffff;
+            border-bottom: none;
+        }
+
+        .tab-close {
+            margin-left: auto;
+            width: 16px;
+            height: 16px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDRMOCA4IDQgMTIgOCA4IDEyIDQgMTYgMTIgMTIgOCIgZmlsbD0iIzY5NzA4MCIvPgo8L3N2Zz4=') no-repeat center;
+            background-size: 12px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .toolbar {
+            height: 48px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            margin-right: 10px;
+        }
+
+        .nav-buttons button {
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-buttons button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .address-bar {
+            flex: 1;
+            height: 32px;
+            border: 1px solid #e1e1e1;
+            border-radius: 20px;
+            padding: 0 16px;
+            outline: none;
+            font-size: 14px;
+            margin: 0 10px;
+        }
+
+        .address-bar:focus {
+            border-color: #0078d4;
+            box-shadow: 0 0 0 1px #0078d4;
+        }
+
+        .content-area {
+            flex: 1;
+            position: relative;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-bar">
+        <div class="controls">
+            <button id="minimize">_</button>
+            <button id="maximize">□</button>
+            <button id="close">×</button>
+        </div>
+        <div style="margin-left: auto;">My Browser</div>
+    </div>
+    <div class="main-content">
+        <div class="tab-bar">
+            <div class="tab active">
+                <span>New Tab</span>
+                <button class="tab-close"></button>
+            </div>
+            <button id="new-tab">+</button>
+        </div>
+        <div class="toolbar">
+            <div class="nav-buttons">
+                <button id="back" disabled>←</button>
+                <button id="forward" disabled>→</button>
+                <button id="reload">↻</button>
+                <button id="home">🏠</button>
+            </div>
+            <input type="text" class="address-bar" id="address" placeholder="Search or enter address" value="https://www.google.com">
+            <button id="settings">⚙</button>
+        </div>
+        <div class="content-area">
+            <!-- Web content displayed via BrowserView -->
+        </div>
+    </div>
+
+    <script>
+        const address = document.getElementById('address');
+        const back = document.getElementById('back');
+        const forward = document.getElementById('forward');
+        const reload = document.getElementById('reload');
+        const home = document.getElementById('home');
+        const newTab = document.getElementById('new-tab');
+        const settings = document.getElementById('settings');
+
+        // Navigation
+        address.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                window.electronAPI.navigate(address.value);
+            }
+        });
+
+        back.addEventListener('click', () => {
+            window.electronAPI.goBack();
+        });
+
+        forward.addEventListener('click', () => {
+            window.electronAPI.goForward();
+        });
+
+        reload.addEventListener('click', () => {
+            window.electronAPI.reload();
+        });
+
+        home.addEventListener('click', () => {
+            window.electronAPI.navigate('https://www.google.com');
+        });
+
+        newTab.addEventListener('click', () => {
+            window.electronAPI.newTab();
+            address.value = '';
+        });
+
+        settings.addEventListener('click', () => {
+            window.electronAPI.openSettings();
+        });
+
+        // Window controls
+        document.getElementById('minimize').addEventListener('click', () => {
+            window.electronAPI.minimize();
+        });
+
+        document.getElementById('maximize').addEventListener('click', () => {
+            window.electronAPI.maximize();
+        });
+
+        document.getElementById('close').addEventListener('click', () => {
+            window.electronAPI.close();
+        });
+    </script>
+</body>
+</html>

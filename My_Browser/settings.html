@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - My Browser</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f3f3f3;
+        }
+
+        .settings-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .settings-section h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-label {
+            flex: 1;
+        }
+
+        .setting-control {
+            flex: 0 0 auto;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: #0078d4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #106ebe;
+        }
+
+        select, input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Browser Settings</h1>
+
+    <div class="settings-section">
+        <h2>General</h2>
+        <div class="setting-item">
+            <div class="setting-label">
+                <strong>Home Page</strong><br>
+                <small>Set the page that opens when you click the home button</small>
+            </div>
+            <div class="setting-control">
+                <input type="text" id="homePage" value="https://www.google.com" style="width: 300px;">
+            </div>
+        </div>
+        <div class="setting-item">
+            <div class="setting-label">
+                <strong>Default Search Engine</strong>
+            </div>
+            <div class="setting-control">
+                <select id="searchEngine">
+                    <option value="google">Google</option>
+                    <option value="bing">Bing</option>
+                    <option value="duckduckgo">DuckDuckGo</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-section">
+        <h2>Privacy & Security</h2>
+        <div class="setting-item">
+            <div class="setting-label">
+                <strong>Block Third-Party Cookies</strong>
+            </div>
+            <div class="setting-control">
+                <input type="checkbox" id="blockCookies">
+            </div>
+        </div>
+        <div class="setting-item">
+            <div class="setting-label">
+                <strong>Enable Do Not Track</strong>
+            </div>
+            <div class="setting-control">
+                <input type="checkbox" id="doNotTrack" checked>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-section">
+        <h2>Appearance</h2>
+        <div class="setting-item">
+            <div class="setting-label">
+                <strong>Theme</strong>
+            </div>
+            <div class="setting-control">
+                <select id="theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="system">System</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-section">
+        <h2>Extensions</h2>
+        <div class="setting-item">
+            <div class="setting-label">
+                <strong>Manage Extensions</strong><br>
+                <small>Install and manage browser extensions</small>
+            </div>
+            <div class="setting-control">
+                <button id="manageExtensions">Open Extension Manager</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-section">
+        <button id="saveSettings">Save Settings</button>
+        <button id="resetSettings" style="margin-left: 10px; background: #d13438;">Reset to Defaults</button>
+    </div>
+
+    <script>
+        // Load settings from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const settings = JSON.parse(localStorage.getItem('browserSettings') || '{}');
+            document.getElementById('homePage').value = settings.homePage || 'https://www.google.com';
+            document.getElementById('searchEngine').value = settings.searchEngine || 'google';
+            document.getElementById('blockCookies').checked = settings.blockCookies || false;
+            document.getElementById('doNotTrack').checked = settings.doNotTrack !== false;
+            document.getElementById('theme').value = settings.theme || 'light';
+        });
+
+        document.getElementById('saveSettings').addEventListener('click', () => {
+            const settings = {
+                homePage: document.getElementById('homePage').value,
+                searchEngine: document.getElementById('searchEngine').value,
+                blockCookies: document.getElementById('blockCookies').checked,
+                doNotTrack: document.getElementById('doNotTrack').checked,
+                theme: document.getElementById('theme').value
+            };
+            localStorage.setItem('browserSettings', JSON.stringify(settings));
+            alert('Settings saved!');
+        });
+
+        document.getElementById('resetSettings').addEventListener('click', () => {
+            if (confirm('Reset all settings to defaults?')) {
+                localStorage.removeItem('browserSettings');
+                location.reload();
+            }
+        });
+
+        document.getElementById('manageExtensions').addEventListener('click', () => {
+            alert('Extension manager not implemented yet');
+        });
+    </script>
+</body>
+</html>

@@ -1,10 +1,3 @@
-This was developed by Geemkuu...the owner of this repo and account 
-### 🛠️ How to use:
-1.  In VS Code, create a file named `README.md` in your main folder.
-2.  Delete everything inside and paste the code below.
-3.  Save and run: `git add README.md`, `git commit -m "Add professional readme"`, and `git push origin main`.
-
----
 
 ```markdown
 # 🪴 Agitech Seedlings Digital Catalog

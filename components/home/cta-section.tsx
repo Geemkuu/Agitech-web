@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Phone, MessageCircle } from "lucide-react"
+import { MessageCircle } from "lucide-react"
+import { SmartLink } from "@/components/smart-link"
 
 export function CTASection() {
   return (
@@ -14,23 +15,16 @@ export function CTASection() {
           We are here to help you succeed in your farming journey.
         </p>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-10 flex justify-center">
           <Button asChild size="lg" variant="secondary" className="min-w-[200px]">
-            <a
-              href="https://wa.me/254700000000?text=Hello%20Agitech%20Seedlings!%20I%20would%20like%20to%20place%20an%20order."
-              target="_blank"
-              rel="noopener noreferrer"
+            <SmartLink
+              href="https://wa.me/254700569709?text=Hello%20Agitech%20Seedlings!%20I%20would%20like%20to%20place%20an%20order."
+              loadingMessage="📱 Connecting you to WhatsApp..."
               className="flex items-center gap-2"
             >
               <MessageCircle className="h-5 w-5" />
               Order via WhatsApp
-            </a>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="min-w-[200px] border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
-            <a href="tel:+254700000000" className="flex items-center gap-2">
-              <Phone className="h-5 w-5" />
-              Call Us Now
-            </a>
+            </SmartLink>
           </Button>
         </div>
 

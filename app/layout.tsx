@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Poppins, Open_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { LoadingProvider } from '@/contexts/loading-context'
+import { GlobalLoading } from '@/components/global-loading'
 import './globals.css'
 
 const poppins = Poppins({ 
@@ -52,7 +54,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${openSans.variable} font-sans antialiased`}>
-        {children}
+        <LoadingProvider>
+          {children}
+          <GlobalLoading />
+        </LoadingProvider>
         <Analytics />
       </body>
     </html>

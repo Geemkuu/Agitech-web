@@ -60,7 +60,7 @@ export function WhatsAppFAB() {
       {/* FAB Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg hover:bg-[#20BD5A] transition-all hover:scale-105"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg border-2 border-[#25D366] hover:bg-[#20BD5A] transition-all hover:scale-105"
         aria-label="Open WhatsApp chat"
       >
         {isOpen ? (

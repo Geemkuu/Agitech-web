@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Leaf, MapPin, Phone, Mail } from "lucide-react"
+import { SmartLink } from "@/components/smart-link"
 
 export function Footer() {
   return (
@@ -27,24 +28,24 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-semibold text-foreground">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <SmartLink href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Home
-                </Link>
+                </SmartLink>
               </li>
               <li>
-                <Link href="/catalogue" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <SmartLink href="/catalogue" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Catalogue
-                </Link>
+                </SmartLink>
               </li>
               <li>
-                <Link href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <SmartLink href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   About Us
-                </Link>
+                </SmartLink>
               </li>
               <li>
-                <Link href="/feedback" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <SmartLink href="/feedback" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Feedback
-                </Link>
+                </SmartLink>
               </li>
             </ul>
           </div>
@@ -54,24 +55,24 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-semibold text-foreground">Categories</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/catalogue?category=Vegetables" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <SmartLink href="/catalogue?category=Vegetables" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Vegetables
-                </Link>
+                </SmartLink>
               </li>
               <li>
-                <Link href="/catalogue?category=Fruits" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <SmartLink href="/catalogue?category=Fruits" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Fruits
-                </Link>
+                </SmartLink>
               </li>
               <li>
-                <Link href="/catalogue?category=Herbs" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <SmartLink href="/catalogue?category=Herbs" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Herbs
-                </Link>
+                </SmartLink>
               </li>
               <li>
-                <Link href="/catalogue?category=Trees" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <SmartLink href="/catalogue?category=Trees" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Trees
-                </Link>
+                </SmartLink>
               </li>
             </ul>
           </div>
@@ -86,15 +87,15 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Phone className="h-4 w-4 shrink-0 text-primary" />
-                <a href="tel:+254700000000" className="hover:text-primary transition-colors">
-                  +254 700 000 000
-                </a>
+                <SmartLink href="tel:+254700569709" loadingMessage="📞 Preparing your call..." className="hover:text-primary transition-colors">
+                  +254 700 569709
+                </SmartLink>
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4 shrink-0 text-primary" />
-                <a href="mailto:info@agitechseedlings.co.ke" className="hover:text-primary transition-colors">
+                <SmartLink href="mailto:info@agitechseedlings.co.ke" loadingMessage="📧 Opening your email client..." className="hover:text-primary transition-colors">
                   info@agitechseedlings.co.ke
-                </a>
+                </SmartLink>
               </li>
             </ul>
           </div>

@@ -1,7 +1,7 @@
-import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SeedlingCard } from "@/components/seedling-card"
+import { SmartLink } from "@/components/smart-link"
 import { createClient } from "@/lib/supabase/server"
 
 export async function FeaturedSeedlings() {
@@ -35,10 +35,10 @@ export async function FeaturedSeedlings() {
             </p>
           </div>
           <Button asChild variant="outline">
-            <Link href="/catalogue" className="flex items-center gap-2">
+            <SmartLink href="/catalogue" className="flex items-center gap-2">
               View All
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </SmartLink>
           </Button>
         </div>
 

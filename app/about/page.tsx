@@ -1,10 +1,10 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { WhatsAppFAB } from "@/components/whatsapp-fab"
+import { SmartLink } from "@/components/smart-link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Leaf, Target, Eye, Heart, Users, Award, MapPin, Phone, Mail, Clock } from "lucide-react"
-import Link from "next/link"
 
 export const metadata = {
   title: "About Us | Agitech Seedlings",
@@ -188,8 +188,8 @@ export default function AboutPage() {
                 </div>
                 <div className="flex flex-col items-center gap-2 text-primary-foreground/80">
                   <Phone className="h-6 w-6" />
-                  <a href="tel:+254700000000" className="text-sm hover:text-primary-foreground">
-                    +254 700 000 000
+                  <a href="tel:+254700569709" className="text-sm hover:text-primary-foreground">
+                    +254 700 569709
                   </a>
                 </div>
                 <div className="flex flex-col items-center gap-2 text-primary-foreground/80">
@@ -205,7 +205,7 @@ export default function AboutPage() {
               </div>
               <div className="mt-10">
                 <Button asChild size="lg" variant="secondary">
-                  <Link href="/catalogue">Browse Our Catalogue</Link>
+                  <SmartLink href="/catalogue">Browse Our Catalogue</SmartLink>
                 </Button>
               </div>
             </div>

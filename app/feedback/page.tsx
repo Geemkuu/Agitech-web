@@ -51,10 +51,10 @@ export default function FeedbackPage() {
                     <div>
                       <p className="font-medium text-foreground">Phone</p>
                       <a 
-                        href="tel:+254700000000" 
+                        href="tel:+254700569709" 
                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
                       >
-                        +254 700 000 000
+                        +254 700 569709
                       </a>
                     </div>
                   </div>
@@ -95,7 +95,7 @@ export default function FeedbackPage() {
                     <div>
                       <p className="font-medium text-foreground">WhatsApp</p>
                       <a 
-                        href="https://wa.me/254700000000"
+                        href="https://wa.me/254700569709"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-muted-foreground hover:text-[#25D366] transition-colors"

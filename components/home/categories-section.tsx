@@ -1,6 +1,6 @@
-import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Carrot, Cherry, Flower2, TreeDeciduous } from "lucide-react"
+import { SmartLink } from "@/components/smart-link"
 
 const categories = [
   {
@@ -52,7 +52,7 @@ export function CategoriesSection() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((category) => (
-            <Link key={category.name} href={category.href}>
+            <SmartLink key={category.name} href={category.href}>
               <Card className="group h-full cursor-pointer border-2 border-transparent transition-all hover:border-primary/20 hover:shadow-lg">
                 <CardContent className="flex flex-col items-center p-6 text-center">
                   <div className={`mb-4 flex h-16 w-16 items-center justify-center rounded-full ${category.color} transition-transform group-hover:scale-110`}>
@@ -69,7 +69,7 @@ export function CategoriesSection() {
                   </span>
                 </CardContent>
               </Card>
-            </Link>
+            </SmartLink>
           ))}
         </div>
       </div>

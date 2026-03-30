@@ -29,14 +29,14 @@ export function SeedlingCard({ seedling }: SeedlingCardProps) {
   const whatsappMessage = `Hello! I'm interested in ordering ${seedling.name} seedlings (KES ${seedling.price} each). Please let me know about availability.`
 
   return (
-    <Card className="group overflow-hidden transition-all hover:shadow-md">
+    <Card className="group/card relative flex h-full flex-col overflow-hidden transition-all duration-300 hover:z-50 hover:-translate-y-2 hover:shadow-xl [&:hover~*]:opacity-95 peer">
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
         {seedling.image_url ? (
           <Image
             src={seedling.image_url}
             alt={seedling.name}
             fill
-            className="object-cover transition-transform group-hover:scale-105"
+            className="object-cover transition-transform group-hover/card:scale-105"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
           />
         ) : (
@@ -51,16 +51,16 @@ export function SeedlingCard({ seedling }: SeedlingCardProps) {
           {seedling.stock_status}
         </Badge>
       </div>
-      <CardContent className="p-2.5">
+      <CardContent className="flex flex-1 flex-col p-2.5">
         <div className="mb-0.5 text-[10px] font-medium uppercase tracking-wide text-primary">
           {seedling.category}
         </div>
-        <h3 className="mb-1 text-sm font-medium text-foreground line-clamp-2 leading-tight">{seedling.name}</h3>
+        <h3 className="mb-1 flex-1 text-sm font-medium text-foreground line-clamp-2 leading-tight">{seedling.name}</h3>
         <div className="text-sm font-bold text-foreground">
           KES {seedling.price.toLocaleString()}
         </div>
       </CardContent>
-      <CardFooter className="p-2.5 pt-0">
+      <CardFooter className="p-2.5 pt-0 mt-auto">
         <Button 
           asChild 
           size="sm"
